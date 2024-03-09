@@ -70,7 +70,7 @@ function populatePlanner(year, month) {
       weekday: "short",
     });
 
-    // Add a cell for each family member (you can customize the names)
+    // Add a cell for each family member
     for (var person = 1; person <= 4; person++) {
       var personCell = row.insertCell(person + 1);
       personCell.contentEditable = true; // Allow editing

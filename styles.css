@@ -1,6 +1,6 @@
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: collapse; /* to keep border simple single line*/
   margin-top: 20px;
 }
 
