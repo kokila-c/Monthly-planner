@@ -1,23 +1,24 @@
 // Function to mark a task as completed
 function markCompleted(cell) {
-  if (cell.innerHTML.trim() !== "") {
+  //prettier-ignore
+  if (cell.innerHTML.trim() !== '') {
     // Add your styling or content changes here
     cell.style.backgroundColor = "#aaffaa"; // Change background color to light green
     cell.innerHTML = "Completed"; // You can customize the content as needed
-    cell.contentEditable = false; // Disable further editing
+    cell.contentEditable = true; // Disable further editing
   }
 }
 
 // Function to highlight today's date
 function highlightToday() {
-  var today = new Date();
-  var dateString = today.toLocaleDateString("en-US", {
+  let today = new Date();
+  let dateString = today.toLocaleDateString("en-US", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
 
-  var cellsWithDate = document.querySelectorAll("td:first-child");
+  let cellsWithDate = document.querySelectorAll("td:first-child");
 
   cellsWithDate.forEach(function (cell) {
     if (cell.textContent === dateString) {
@@ -28,18 +29,18 @@ function highlightToday() {
 
 // Function to highlight Saturdays and Sundays
 function highlightWeekends() {
-  var tableRows = document.querySelectorAll("#plannerTable tbody tr");
+  let tableRows = document.querySelectorAll("#plannerTable tbody tr");
 
   tableRows.forEach(function (row) {
-    var dayCell = row.cells[1]; // Assuming the day is in the second column
-    var isWeekend =
+    let dayCell = row.cells[1]; // Assuming the day is in the second column
+    let isWeekend =
       dayCell.textContent.toLowerCase().includes("sat") ||
       dayCell.textContent.toLowerCase().includes("sun");
 
     if (isWeekend) {
-      for (var person = 1; person <= 4; person++) {
-        var personCell = row.cells[person + 1];
-        personCell.style.backgroundColor = "#e6f7ff"; // Light blue color for Saturdays and Sundays
+      for (let person = 1; person <= 4; person++) {
+        let personCell = row.cells[person + 1];
+        personCell.style.backgroundColor = "#c8d7de"; // Light blue color for Saturdays and Sundays
       }
     }
   });
@@ -47,17 +48,17 @@ function highlightWeekends() {
 
 // Function to populate the planner table
 function populatePlanner(year, month) {
-  var tableBody = document
+  let tableBody = document
     .getElementById("plannerTable")
     .getElementsByTagName("tbody")[0];
   tableBody.innerHTML = ""; // Clear the existing table content
 
-  var currentDate = new Date(year, month, 1);
+  let currentDate = new Date(year, month, 1);
 
   while (currentDate.getMonth() === month) {
-    var row = tableBody.insertRow();
-    var dateCell = row.insertCell(0);
-    var dayCell = row.insertCell(1);
+    let row = tableBody.insertRow();
+    let dateCell = row.insertCell(0);
+    let dayCell = row.insertCell(1);
 
     // Convert date to "day, month year" format
     dateCell.textContent = currentDate.toLocaleDateString("en-US", {
@@ -71,8 +72,8 @@ function populatePlanner(year, month) {
     });
 
     // Add a cell for each family member
-    for (var person = 1; person <= 4; person++) {
-      var personCell = row.insertCell(person + 1);
+    for (let person = 1; person <= 4; person++) {
+      let personCell = row.insertCell(person + 1);
       personCell.contentEditable = true; // Allow editing
     }
 
@@ -97,5 +98,5 @@ function nextMonth() {
 }
 
 // Initial population for the current month
-var currentDate = new Date();
+let currentDate = new Date();
 populatePlanner(currentDate.getFullYear(), currentDate.getMonth());
