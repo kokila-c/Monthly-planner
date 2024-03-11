@@ -5,7 +5,7 @@ function markCompleted(cell) {
     // Add your styling or content changes here
     cell.style.backgroundColor = "#aaffaa"; // Change background color to light green
     cell.innerHTML = "Completed"; // You can customize the content as needed
-    cell.contentEditable = true; // Disable further editing
+    cell.contentEditable = false; // Disable further editing
   }
 }
 
@@ -75,6 +75,10 @@ function populatePlanner(year, month) {
     for (let person = 1; person <= 4; person++) {
       let personCell = row.insertCell(person + 1);
       personCell.contentEditable = true; // Allow editing
+      // Attach click event to each cell
+      personCell.addEventListener("click", function () {
+        markCompleted(personCell); // Display alert message
+      });
     }
 
     currentDate.setDate(currentDate.getDate() + 1);
